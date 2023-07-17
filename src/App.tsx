@@ -27,7 +27,7 @@ function App() {
             }}
             templateColumns={{
                 base: '1fr',
-                lg: '300px',
+                lg: '250px',
             }}
         >
             <GridItem area="nav">

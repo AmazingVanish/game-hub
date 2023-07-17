@@ -1,4 +1,12 @@
-import { Button, Card, HStack, Image, List, ListItem } from '@chakra-ui/react';
+import {
+    Button,
+    Card,
+    HStack,
+    Heading,
+    Image,
+    List,
+    ListItem,
+} from '@chakra-ui/react';
 import useGenres, { Genre } from '../hooks/useGenres';
 import getCroppedImageUrl from '../services/image-url';
 import GenreListSkeleton from './GenreListSkeleton';
@@ -17,36 +25,48 @@ const GenreList = ({ selectedGenre, onSelectedGenre }: GenreListProps) => {
     if (error) return null;
 
     return (
-        <List>
-            {isLoading &&
-                skeletons.map((skeleton) => (
-                    <GenreListSkeleton key={skeleton} />
+        <>
+            <Heading fontSize="2xl" marginBottom={3} paddingLeft="5px">
+                Genres
+            </Heading>
+            <List>
+                {isLoading &&
+                    skeletons.map((skeleton) => (
+                        <GenreListSkeleton key={skeleton} />
+                    ))}
+                {data.map((genre) => (
+                    <ListItem key={genre.id} padding="5px">
+                        <Card
+                            bg={
+                                genre.id === selectedGenre?.id ? 'blue.500' : ''
+                            }
+                            borderRadius={8}
+                            margin="3px"
+                            objectFit="cover"
+                        >
+                            <HStack>
+                                <Image
+                                    boxSize="64px"
+                                    borderRadius={8}
+                                    src={getCroppedImageUrl(
+                                        genre.image_background
+                                    )}
+                                />
+                                <Button
+                                    whiteSpace="normal"
+                                    textAlign="left"
+                                    onClick={() => onSelectedGenre(genre)}
+                                    fontSize="lg"
+                                    variant="link"
+                                >
+                                    {genre.name}
+                                </Button>
+                            </HStack>
+                        </Card>
+                    </ListItem>
                 ))}
-            {data.map((genre) => (
-                <ListItem key={genre.id} paddingY="5px">
-                    <Card
-                        bg={genre.id === selectedGenre?.id ? 'blue.500' : ''}
-                        borderRadius={8}
-                        margin="3px"
-                    >
-                        <HStack>
-                            <Image
-                                boxSize="64px"
-                                borderRadius={8}
-                                src={getCroppedImageUrl(genre.image_background)}
-                            />
-                            <Button
-                                onClick={() => onSelectedGenre(genre)}
-                                fontSize="lg"
-                                variant="link"
-                            >
-                                {genre.name}
-                            </Button>
-                        </HStack>
-                    </Card>
-                </ListItem>
-            ))}
-        </List>
+            </List>
+        </>
     );
 };
 
