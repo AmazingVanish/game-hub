@@ -3,9 +3,9 @@ import { Card, CardBody, HStack, ListItem, Skeleton, SkeletonText } from '@chakr
 const GameCardSkeleton = () => {
     return (
         <ListItem paddingY="5px">
-            <Card height="32px" borderRadius={8} margin="3px">
+            <Card height="64px" borderRadius={8} margin="3px">
                 <HStack>
-                    <Skeleton height="32px" />
+                    <Skeleton height="64px" />
                     <CardBody>
                         <SkeletonText height="32px" />
                     </CardBody>
