@@ -1,8 +1,15 @@
 import { HStack, Icon } from '@chakra-ui/react';
 import { Platform } from '../hooks/useGames';
-import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'react-icons/fa';
+import {
+    FaWindows,
+    FaPlaystation,
+    FaXbox,
+    FaApple,
+    FaLinux,
+    FaAndroid,
+} from 'react-icons/fa';
 import { MdPhoneIphone } from 'react-icons/md';
-import { SiNintendo } from 'react-icons/si';
+import { SiNintendoswitch, SiAtari, SiCommodore, SiSega } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { IconType } from 'react-icons';
 
@@ -15,11 +22,14 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
         pc: FaWindows,
         playstation: FaPlaystation,
         xbox: FaXbox,
-        nintendo: SiNintendo,
+        ios: MdPhoneIphone,
+        android: FaAndroid,
         mac: FaApple,
         linux: FaLinux,
-        android: FaAndroid,
-        ios: MdPhoneIphone,
+        nintendo: SiNintendoswitch,
+        atari: SiAtari,
+        'commodore-amiga': SiCommodore,
+        sega: SiSega,
         web: BsGlobe,
     };
 
@@ -27,7 +37,13 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
         <>
             <HStack marginY={1}>
                 {platforms.map((platform) => (
-                    <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" fontSize="xl" mr={2} />
+                    <Icon
+                        key={platform.id}
+                        as={iconMap[platform.slug]}
+                        color="gray.500"
+                        fontSize="xl"
+                        mr={2}
+                    />
                 ))}
             </HStack>
         </>
